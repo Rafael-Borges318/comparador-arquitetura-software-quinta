@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block title %}Produtos{% endblock %}
+{% block title %}Comparador de Preços — Produtos{% endblock %}
 {% block content %}
-<h1>Produtos</h1>
+<h1>Produtos em Destaque</h1>
 
-<form class="search-form" method="get" action="/public/">
-  <input type="search" name="q" value="{{ q or '' }}" placeholder="Buscar produto..." style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; width: 100%; max-width: 400px; margin-bottom: 1.5rem;">
-  <button type="submit" style="padding: 0.5rem 1rem; border: none; background: #0088ce; color: white; border-radius: 4px; cursor: pointer;">Buscar</button>
+<form class="search-bar" method="get" action="/public/">
+  <input type="search" name="q" value="{{ q or '' }}" placeholder="Buscar produto...">
+  <button type="submit">Buscar</button>
   {% if q %}
-    <a href="/public/" style="margin-left: 0.5rem; color: #666; text-decoration: none;">Limpar filtro</a>
+    <a href="/public/" class="clear-filter">✕ Limpar filtro</a>
   {% endif %}
 </form>
 
@@ -30,7 +30,10 @@
     <div class="product-body">
       <h2>{{ p.display_name }}</h2>
       <div class="product-meta">
-        <span class="price">R$ {{ "%.2f"|format(p.best_price) }}</span>
+        <div class="price-group">
+          <span class="price-from">a partir de</span>
+          <span class="price">R$ {{ "%.2f"|format(p.best_price) }}</span>
+        </div>
         <span class="stores">
           {{ p.store_count }} loja{% if p.store_count != 1 %}s{% endif %}
         </span>

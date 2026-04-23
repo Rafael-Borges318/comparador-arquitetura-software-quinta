@@ -4,11 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}Comparador de Preços{% endblock %}</title>
-<link rel="stylesheet" href="/static/app.css">
+<link rel="stylesheet" href="/static/app.css?v=2">
 </head>
 <body>
 <header>
-  <a href="/public/" class="logo">Comparador de Preços</a>
+  <a href="/public/" class="logo">
+    <span class="logo-icon">CP</span>
+    Comparador de Preços
+  </a>
   <nav class="topnav">
     {% if is_admin %}
       <a href="/admin/">Admin</a>

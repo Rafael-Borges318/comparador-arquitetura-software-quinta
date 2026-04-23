@@ -53,6 +53,9 @@ class MercadoLivreScraper(BaseScraper):
 
             mlb = self.MLB_RE.search(href)
             site_id = mlb.group(1).replace("-", "") if mlb else href.split("?")[0]
+            # Tracking links (click1.mercadolivre) expire; use the canonical product URL
+            if "click1.mercadolivre" in href and site_id.startswith("MLB"):
+                href = f"https://produto.mercadolivre.com.br/{site_id}"
 
             results.append(
                 ListingSnapshot(

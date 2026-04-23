@@ -47,6 +47,9 @@ class AmazonScraper(BaseScraper):
             href = link_el.get("href", "")
             if href.startswith("/"):
                 href = self.BASE + href
+            # Sponsored ad links (/sspa/click) are unstable; use the stable dp URL instead
+            if "/sspa/click" in href:
+                href = f"{self.BASE}/dp/{asin}"
 
             results.append(
                 ListingSnapshot(
